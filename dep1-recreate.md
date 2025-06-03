@@ -23,8 +23,6 @@ spec:
         ports:
         - containerPort: 80
 ```
----
-Here’s a **line-by-line breakdown** of the Kubernetes manifest you provided, explained in a way that's easy for **DevOps students** to understand. This file defines a **Deployment** that manages an NGINX web server.
 
 ---
 
