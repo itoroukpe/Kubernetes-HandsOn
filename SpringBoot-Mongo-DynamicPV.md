@@ -324,6 +324,44 @@ spec:
 **Why it matters:**
 If you buy a “500 GB” hard drive, your OS might show it as \~465 GiB. That’s not missing space—just **different units** being used.
 
+The **IEC standard** refers to the **International Electrotechnical Commission's** formal system for naming digital storage units based on **binary multiples**—which differ from the **SI (International System of Units)** that uses **decimal multiples**.
+
+---
+
+### 📘 **IEC Standard for Binary Prefixes (IEC 60027-2 and IEC 80000-13)**
+
+#### 🔹 Why the IEC Standard Was Introduced:
+
+* To **eliminate confusion** between binary-based and decimal-based measurements.
+* Historically, terms like “megabyte” or “gigabyte” were used inconsistently—sometimes meaning 1,048,576 bytes (2²⁰), sometimes 1,000,000 bytes (10⁶).
+* The IEC introduced **unique binary prefixes** in **1998** to clarify this.
+
+---
+
+### 📏 **IEC Binary Prefixes vs SI Decimal Prefixes**
+
+| Binary Unit (IEC) | Abbreviation | Value in Bytes          | Equivalent SI Value |
+| ----------------- | ------------ | ----------------------- | ------------------- |
+| **Kibibyte**      | **KiB**      | 1,024 (2¹⁰)             | \~1.02 KB           |
+| **Mebibyte**      | **MiB**      | 1,048,576 (2²⁰)         | \~1.05 MB           |
+| **Gibibyte**      | **GiB**      | 1,073,741,824 (2³⁰)     | \~1.07 GB           |
+| **Tebibyte**      | **TiB**      | 1,099,511,627,776 (2⁴⁰) | \~1.10 TB           |
+
+---
+
+### ✅ **Examples of IEC Usage**
+
+* **Operating systems** (like Linux or newer versions of Windows/macOS) report disk space and RAM using **IEC units** (e.g., GiB).
+* **Cloud platforms and tools** (like Kubernetes) often define memory/resource limits in **MiB/GiB** for precision.
+
+---
+
+### 📎 Summary
+
+* **IEC units (GiB, MiB, etc.)** = Binary (base 2) → Accurate for computing.
+* **SI units (GB, MB, etc.)** = Decimal (base 10) → Used for marketing and storage products.
+
+
 
 
 
