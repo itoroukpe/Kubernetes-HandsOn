@@ -293,6 +293,37 @@ spec:
 
 ---
 
+**"Gi"** in **GiB** stands for **gibibyte**, while **"GB"** (or **gbyte**) stands for **gigabyte**. They are both units of digital storage, but they represent **different amounts** due to the way bytes are counted:
+
+---
+
+### 📦 **Gibibyte (GiB)** – Binary-based
+
+* **1 GiB = 1,073,741,824 bytes** = 2³⁰ bytes
+* Based on **powers of 2** (used by operating systems, memory, etc.)
+* **"Gi"** stands for **gibi**, part of the IEC standard
+
+---
+
+### 💽 **Gigabyte (GB)** – Decimal-based
+
+* **1 GB = 1,000,000,000 bytes** = 10⁹ bytes
+* Based on **powers of 10** (used by hard drive manufacturers, marketing)
+
+---
+
+### 🔍 Summary Comparison
+
+| Unit      | Bytes         | Used In                              |
+| --------- | ------------- | ------------------------------------ |
+| **1 GiB** | 1,073,741,824 | Operating systems, memory (RAM)      |
+| **1 GB**  | 1,000,000,000 | Hard drives, SSDs, cloud storage ads |
+
+---
+
+**Why it matters:**
+If you buy a “500 GB” hard drive, your OS might show it as \~465 GiB. That’s not missing space—just **different units** being used.
+
 
 
 
