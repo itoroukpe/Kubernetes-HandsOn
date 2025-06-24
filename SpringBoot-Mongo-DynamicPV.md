@@ -1,5 +1,6 @@
 ```
 # Complete Manifest Where in single yml we defined Deployment & Service for SpringApp & PVC(with default  StorageClass),ReplicaSet & Service For Mongo.
+```yaml
 # Deployment for Spring Boot Application
 apiVersion: apps/v1
 kind: Deployment
@@ -27,8 +28,10 @@ spec:
           value: devdb@123
         - name: MONGO_DB_HOSTNAME
           value: mongo
+```
 ---
-# NodePort Service to expose Spring App outside the cluster
+
+```yaml# NodePort Service to expose Spring App outside the cluster
 apiVersion: v1
 kind: Service
 metadata:
@@ -41,7 +44,9 @@ spec:
   - port: 80              # Service port
     targetPort: 8080      # Container port
     nodePort: 30008       # Optional: Fixed external port (range: 30000–32767)
+```
 ---
+```yaml
 # Persistent Volume Claim for MongoDB data storage
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -53,7 +58,9 @@ spec:
   resources:
     requests:
       storage: 1Gi
+```
 ---
+```yaml
 # ReplicaSet for MongoDB with PVC mounted
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -86,7 +93,10 @@ spec:
         volumeMounts:
         - name: mongo-data
           mountPath: /data/db
+```
 ---
+
+```yaml
 # ClusterIP Service for internal MongoDB connection
 apiVersion: v1
 kind: Service
@@ -99,7 +109,7 @@ spec:
   ports:
   - port: 27017
     targetPort: 27017
-
+```
 
 ```
 ---
