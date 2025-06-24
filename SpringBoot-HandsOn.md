@@ -65,7 +65,7 @@ spec:
           value: mongo
 ```
 
-#### 2.2 `springapp-service.yml`
+#### 2.2 `springapp-service.yml` using NodePort
 
 ```yaml
 apiVersion: v1
@@ -81,7 +81,21 @@ spec:
     targetPort: 8080
     nodePort: 30008
 ```
-
+---
+#### 2.2 `springapp-service.yml` using LoadBalancer
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: springapp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: springapp
+  ports:
+  - port: 80
+    targetPort: 8080
+```
 ---
 
 #### 2.3 `mongo-pvc.yml`
