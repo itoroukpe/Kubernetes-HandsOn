@@ -197,11 +197,67 @@ kubectl get secret -n monitoring prometheus-grafana -o jsonpath="{.data.admin-pa
 
 ## 5️⃣ View Prometheus UI (Optional)
 
+To view the **Prometheus UI on EKS**, you need to expose the Prometheus service either **locally** (via port-forward) or **externally** (via LoadBalancer or Ingress). Here's how to do both:
+
+---
+
+## ✅ OPTION 1: View Prometheus UI Locally (Port Forwarding)
+
+### 🔹 Step 1: Port Forward to the Prometheus Service
+
 ```bash
-kubectl port-forward svc/prometheus-kube-prometheus-prometheus -n monitoring 9090:9090
+kubectl port-forward svc/prometheus-kube-prometheus-prometheus -n monitoring 9090
 ```
 
-Then go to: [http://localhost:9090](http://localhost:9090)
+This will forward Prometheus UI to your local port 9090.
+
+### 🔹 Step 2: Open in Your Browser
+
+Go to:
+**[http://localhost:9090](http://localhost:9090)**
+
+You should see the Prometheus UI.
+
+---
+
+## 🌐 OPTION 2: Expose Prometheus via LoadBalancer (External Access)
+
+### ⚠️ Use this if you want to access Prometheus via a public IP.
+
+### 🔹 Step 1: Change Service Type to LoadBalancer
+
+```bash
+kubectl patch svc prometheus-kube-prometheus-prometheus -n monitoring \
+  -p '{"spec": {"type": "LoadBalancer"}}'
+```
+
+### 🔹 Step 2: Get the External IP
+
+```bash
+kubectl get svc prometheus-kube-prometheus-prometheus -n monitoring
+```
+
+Look for the `EXTERNAL-IP` column. It may take 1–2 minutes to populate.
+
+### 🔹 Step 3: Access via Browser
+
+Visit:
+
+```bash
+http://<EXTERNAL-IP>:9090
+```
+
+✅ You’ll now see the full Prometheus UI.
+
+---
+
+## 🔒 (Optional but Recommended): Restrict External Access
+
+If you're exposing Prometheus publicly, consider:
+
+* Using **Ingress + Auth + TLS**
+* Adding **network policies** or **security groups**
+* Restricting access by IP or VPN
 
 ---
 
@@ -214,23 +270,7 @@ Grafana comes with built-in dashboards from the Helm chart. You can also:
 
 ---
 
-## 7️⃣ (Optional) Expose Grafana with LoadBalancer
 
-Edit values before install, or patch the service after install:
-
-```bash
-kubectl patch svc prometheus-grafana -n monitoring -p '{"spec": {"type": "LoadBalancer"}}'
-```
-
-Then run:
-
-```bash
-kubectl get svc prometheus-grafana -n monitoring
-```
-
-Note the **EXTERNAL-IP**, then access Grafana via `http://<external-ip>`
-
----
 
 ## 8️⃣ Configure IAM Roles for Service Accounts (IRSA) \[If Needed]
 
@@ -278,17 +318,6 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
   -f values.yaml \
   --namespace monitoring
 ```
-
----
-
-## ✅ Summary
-
-| Component  | Access Method                               |
-| ---------- | ------------------------------------------- |
-| Grafana    | `http://localhost:3000`                     |
-| Prometheus | `http://localhost:9090`                     |
-| Metrics    | Kubernetes metrics + node-exporter          |
-| Dashboards | Auto-loaded into Grafana or import manually |
 
 ---
 
